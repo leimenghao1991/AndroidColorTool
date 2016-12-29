@@ -36,7 +36,7 @@ public class MainPage implements IAction{
 	}
 
 	@Override
-	public void onAdded() {
+	public int onAdded() {
 		// TODO Auto-generated method stub
 		String colorFilePath = frame.getColorFilePath();
 		String attrFilePath = frame.getAttrFilePath();
@@ -44,6 +44,6 @@ public class MainPage implements IAction{
 		String colorName = frame.getDayColorName();
 		String dayColorValue = frame.getDayColorValue();
 		String nightColorValue = frame.getNightColorValue();
-		insertHelper.insert(colorFilePath, attrFilePath, styleFilePath, colorName, dayColorValue, nightColorValue);
+		return insertHelper.insert(colorFilePath, attrFilePath, styleFilePath, colorName, dayColorValue, nightColorValue);
 	}
 }

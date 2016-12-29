@@ -13,6 +13,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
+import Util.StatusCode;
 import interfaces.IAction;
 
 public class AddNewColorFrame extends JFrame {
@@ -285,10 +286,19 @@ public class AddNewColorFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (actionDelegate != null) {
-					actionDelegate.onAdded();
+					int result = actionDelegate.onAdded();
+					String resultMsg = StatusCode.codeMessageMap.get(result);
+					showMessage(resultMsg);
 				}
 			}
 		});
+	}
+	
+	public void showMessage(String msg){
+		if (msg == null) {
+			return;
+		}
+		generateResult.setText(msg);
 	}
 	
 	private boolean checkColorName(){

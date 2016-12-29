@@ -109,29 +109,35 @@ public class InsertHelper {
 		return true;
 	}
 	
-	public boolean insert(String colorFilePath, String attrFilePath, String styleFilePath, String colorName, String dayColorValue, String nightColorValue){
+	public int insert(String colorFilePath, String attrFilePath, String styleFilePath, String colorName, String dayColorValue, String nightColorValue){
 		File colorFile = new File(colorFilePath);
 		if (!colorFile.exists()) {
-			return false;
+			return StatusCode.COLOR_XML_PATH_ERROR;
 		}
 		File attrFile = new File(attrFilePath);
 		if (!attrFile.exists()) {
-			return false;
+			return StatusCode.ATTR_XML_PATH_ERROR;
 		}
 		File styleFile = new File(styleFilePath);
 		if (!styleFile.exists()) {
-			return false;
+			return StatusCode.STYLES_XML_PATH_ERROR;
 		}
 		
-		insertToColor(colorFilePath, colorName, dayColorValue);
+		boolean insertDayColorResult = insertToColor(colorFilePath, colorName, dayColorValue);
 		
 		String nightColorName = generateNightColorName(colorName);
-		insertToColor(colorFilePath, nightColorName, nightColorValue);
+		boolean insertNightColorResult = insertToColor(colorFilePath, nightColorName, nightColorValue);
+		if (!insertDayColorResult || !insertNightColorResult) {
+			return StatusCode.INSERT_TO_COLOR_ERROR;
+		}
+		if (!insertToAttr(attrFilePath, colorName)) {
+			return StatusCode.INSERT_TO_ATTR_ERROR;
+		}
 		
-		insertToAttr(attrFilePath, colorName);
-		
-		insertToStyle(styleFilePath, colorName);
-		return true;
+		if (!insertToStyle(styleFilePath, colorName)) {
+			return StatusCode.INSERT_TO_STYLES_ERROR;
+		}
+		return StatusCode.SUCCESS;
 	
 	}
 	

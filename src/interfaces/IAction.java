@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface IAction {
-	public void onAdded();
+	public int onAdded();
 }
