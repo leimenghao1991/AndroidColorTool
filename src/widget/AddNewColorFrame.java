@@ -297,32 +297,32 @@ public class AddNewColorFrame extends JFrame {
 	}
 	
 	public String getDayColorName(){
-		String dayColorName = newColorNameInput.getText();
+		String dayColorName = newColorNameInput.getText().trim();
 		return dayColorName;
 	}
 	
 	public String getNightColorValue(){
-		String nightColorValue = nightColorInput.getText();
+		String nightColorValue = nightColorInput.getText().trim();
 		return nightColorValue;
 	}
 	
 	public String getDayColorValue(){
-		String dayColorValue = dayColorInput.getText();
+		String dayColorValue = dayColorInput.getText().trim();
 		return dayColorValue;
 	}
 	
 	public String getColorFilePath(){
-		String colorFilePath = colorFileInput.getText();
+		String colorFilePath = colorFileInput.getText().trim();
 		return colorFilePath;
 	}
 	
 	public String getAttrFilePath(){
-		String attrFilePath = attrFileInput.getText();
+		String attrFilePath = attrFileInput.getText().trim();
 		return attrFilePath;
 	}
 	
 	public String getStyleFilePath(){
-		String styleFilePath = styleFileInput.getText();
+		String styleFilePath = styleFileInput.getText().trim();
 		return styleFilePath;
 	}
 }
